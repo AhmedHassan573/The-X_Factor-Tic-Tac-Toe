@@ -54,3 +54,12 @@ jobs:
     - name: Deploy application
       run: echo "Deploying the application..."
       # Add your deployment scripts here
+
+#include <gtest/gtest.h>
+#include "testDatabase.h"
+#include "test_game.h"
+
+int main(int argc, char **argv) {    
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
