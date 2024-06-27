@@ -1,0 +1,57 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install aqt
+      run: pip install aqtinstall
+
+    - name: Set up Qt
+      run: python3 -m aqt install 5.15.2 linux desktop -O /home/runner/work/The-X_Factor-Tic-Tac-Toe/Qt
+
+    - name: Install dependencies
+      run: sudo apt-get install -y build-essential cmake
+
+    - name: Build project
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        make
+
+    - name: Run tests
+      run: |
+        cd build
+        ctest
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Deploy application
+      run: echo "Deploying the application..."
+      # Add your deployment scripts here
+
