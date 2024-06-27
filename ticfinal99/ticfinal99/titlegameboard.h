@@ -6,6 +6,8 @@
 #include <vector>
 #include "Database.h"
 
+class MainWindow;
+
 namespace Ui {
 class titlegameboard;
 }
@@ -41,6 +43,7 @@ private:
     void makeHardMove();
     int minimax(int depth, bool isMaximizing);
     bool isMovesLeft();
+    MainWindow *mainWindow;
 };
 
 #endif // TITLEGAMEBOARD_H

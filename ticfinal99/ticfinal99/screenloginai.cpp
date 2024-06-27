@@ -2,7 +2,9 @@
 #include "ui_screenloginai.h"
 #include "Database.h"
 #include "titlegameboard.h"
+#include "signupscreen.h" // Ensure you include this if you are using it
 #include "mainwindow.h"
+
 database_t screenlogindatabaseai;
 
 screenloginai::screenloginai(QWidget *parent)
@@ -10,6 +12,7 @@ screenloginai::screenloginai(QWidget *parent)
     , ui(new Ui::screenloginai)
 {
     ui->setupUi(this);
+    ui->lineEditPasswordAI->setEchoMode(QLineEdit::Password);  // Set password to appear as dots
 }
 
 screenloginai::~screenloginai()
@@ -22,29 +25,24 @@ void screenloginai::on_loginpushbuttonai_clicked()
     // Retrieve the text from the QLineEdit widgets
     QString usernameloginai = ui->lineEditUserNameAI->text();
     QString passwordloginai = ui->lineEditPasswordAI->text();
-    screenlogindatabaseai.player.player(usernameloginai.toStdString(),passwordloginai.toStdString());
+    screenlogindatabaseai.player.player(usernameloginai.toStdString(), passwordloginai.toStdString());
 
-    playerNum=screenlogindatabaseai.Login();
-    if(playerNum!=-1)
+    playerNum = screenlogindatabaseai.Login();
+    if(playerNum != -1)
     {
-        Player1=usernameloginai;
+        Player1 = usernameloginai;
         hide();
-        QString message = "Welcome " + usernameloginai ;
+        QString message = "Welcome " + usernameloginai;
         QMessageBox::information(this, "User Info", message);
         titlegameboard databasetitleboard;
         databasetitleboard.setModal(true);
         databasetitleboard.exec();
-
-
     }
     else
     {
         QMessageBox::information(this, "User Info", QString("User Name doesn't exist"));
-
     }
-
 }
-
 
 void screenloginai::on_signuppushbuttonai_clicked()
 {
@@ -52,44 +50,31 @@ void screenloginai::on_signuppushbuttonai_clicked()
     signupscreen gamesignupscreen;
     gamesignupscreen.setModal(true);
     gamesignupscreen.exec();
-
 }
 
 void screenloginai::on_showscreenbuttonloginai_clicked()
 {
-    // Retrieve the text from the QLineEdit widgets
-
-    int gameWon=0,gameLost=0,gameDraw=0;
+    int gameWon = 0, gameLost = 0, gameDraw = 0;
     QString usernameloginai = ui->lineEditUserNameAI->text();
     QString passwordloginai = ui->lineEditPasswordAI->text();
-    screenlogindatabaseai.player.player(usernameloginai.toStdString(),passwordloginai.toStdString());
-    playerNum=screenlogindatabaseai.Login();
-    if(playerNum!=-1)
+    screenlogindatabaseai.player.player(usernameloginai.toStdString(), passwordloginai.toStdString());
+    playerNum = screenlogindatabaseai.Login();
+    if(playerNum != -1)
     {
-        screenlogindatabaseai.Get_Score(usernameloginai.toStdString(),gameWon,gameLost,gameDraw);
-        Player1=usernameloginai;
+        screenlogindatabaseai.Get_Score(usernameloginai.toStdString(), gameWon, gameLost, gameDraw);
+        Player1 = usernameloginai;
         hide();
         QString message = "Welcome " + usernameloginai + "\nYou Won : " + QString::number(gameWon) + "\nYou Lost : " + QString::number(gameLost) + "\nYou Draw : " + QString::number(gameDraw);
         QMessageBox::information(this, "User Info", message);
         titlegameboard databasetitleboard;
         databasetitleboard.setModal(true);
         databasetitleboard.exec();
-
-
     }
     else
     {
         QMessageBox::information(this, "User Info", QString("Incorrect User Name or Password"));
-
     }
-
-
-
-
-
-
 }
-
 
 void screenloginai::on_screenloginAIMainwindowbutton_clicked()
 {
@@ -98,4 +83,3 @@ void screenloginai::on_screenloginAIMainwindowbutton_clicked()
         mainWindow->show();  // Show the main window
     }
 }
-

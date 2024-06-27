@@ -12,6 +12,7 @@ titlegameboard::titlegameboard(QWidget *parent)
     , isPlayerOneTurn(true)
     , symbolX("X")
     , symbolO("O")
+    ,mainWindow(mainWindow)
 {
     ui->setupUi(this);
     buttons = {ui->button1, ui->button2, ui->button3, ui->button4, ui->button5, ui->button6, ui->button7, ui->button8, ui->button9};
@@ -359,9 +360,10 @@ int titlegameboard::minimax(int depth, bool isMaximizing)
 
 void titlegameboard::on_titleMainwindowbutton_clicked()
 {
-    MainWindow* titlemainmenu = new MainWindow(this); // Create a new instance of MainWindow
-    titlemainmenu->show(); // Show the main window
-    this->close(); // Optionally close the current dialog if you want to switch to main window
+    this->close();  // Close the login screen
+    if (mainWindow) {
+        mainWindow->show();  // Show the main window
+    }
 }
 
 

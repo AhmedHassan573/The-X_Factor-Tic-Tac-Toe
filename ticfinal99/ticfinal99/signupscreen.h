@@ -8,10 +8,9 @@
 #include "screenlogin.h"
 #include "screenloginai.h"
 #include "Database.h"
-
-
-
+#include "mainwindow.h"
 #include <QDialog>
+class MainWindow;
 
 namespace Ui {
 class signupscreen;
@@ -34,6 +33,7 @@ private slots:
 
 private:
     Ui::signupscreen *ui;
+    MainWindow *mainWindow;
 };
 
 #endif // SIGNUPSCREEN_H
