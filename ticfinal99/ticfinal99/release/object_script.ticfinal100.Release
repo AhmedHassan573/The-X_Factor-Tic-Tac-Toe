@@ -1,0 +1,14 @@
+release/Database.o
+release/globals.o
+release/mainwindow.o
+release/screenlogin.o
+release/titlegameboard.o
+release/screenloginai.o
+release/signupscreen.o
+release/main.o
+release/sqlite3.o
+release/moc_mainwindow.o
+release/moc_screenlogin.o
+release/moc_screenloginai.o
+release/moc_signupscreen.o
+release/moc_titlegameboard.o

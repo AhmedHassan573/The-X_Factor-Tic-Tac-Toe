@@ -1,0 +1,14 @@
+debug/Database.o
+debug/globals.o
+debug/mainwindow.o
+debug/screenlogin.o
+debug/titlegameboard.o
+debug/screenloginai.o
+debug/signupscreen.o
+debug/main.o
+debug/sqlite3.o
+debug/moc_mainwindow.o
+debug/moc_screenlogin.o
+debug/moc_screenloginai.o
+debug/moc_signupscreen.o
+debug/moc_titlegameboard.o
