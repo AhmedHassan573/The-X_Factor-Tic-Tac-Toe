@@ -16,13 +16,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Qt
-      uses: jurplel/install-qt-action@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        version: '5.15.2'
-        host: 'ubuntu'
-        target: 'desktop'
-        arch: 'gcc_64'
+        python-version: '3.x'
+
+    - name: Install aqt
+      run: pip install aqtinstall
+
+    - name: Set up Qt
+      run: python3 -m aqt install 5.15.2 linux desktop -O /home/runner/work/The-X_Factor-Tic-Tac-Toe/Qt
 
     - name: Install dependencies
       run: sudo apt-get install -y build-essential cmake
